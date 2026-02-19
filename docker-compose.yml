@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    container_name: flower-shop-app
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/flower-shop?schema=public
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=your-super-secret-key-change-me
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/src/generated/prisma
+    command: ["npm", "run", "dev"]
+
+  db:
+    image: postgres:15-alpine
+    container_name: flower-shop-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: flower-shop
+    ports:
+      - "5432:5432"
+    volumes: 
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
