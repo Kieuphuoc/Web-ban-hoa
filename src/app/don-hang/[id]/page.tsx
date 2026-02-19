@@ -134,7 +134,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
                                 Địa chỉ giao hàng
                             </h3>
                             <p className="text-sm text-[var(--color-text)] leading-relaxed">
-                                {order.recipientAddress}
+                                {order.deliveryAddress}
                             </p>
                             {order.deliveryDate && (
                                 <div className="mt-4 pt-4 border-t border-gray-100">
