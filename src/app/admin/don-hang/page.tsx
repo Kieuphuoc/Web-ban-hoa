@@ -46,7 +46,7 @@ export default async function AdminOrdersPage({
         createdAt: o.createdAt.toISOString(),
         recipientName: o.recipientName,
         recipientPhone: o.recipientPhone,
-        recipientAddress: o.recipientAddress,
+        recipientAddress: o.deliveryAddress,
         user: o.user,
         items: o.items.map((i) => ({
             id: i.id,
